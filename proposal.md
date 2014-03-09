@@ -69,20 +69,97 @@ Now there is the only posix CV implementation in RTEMS which is based on score t
 	void _CORE_condition_variable_broadcast(
 				CORE_condition_variable_Control *the_cv);
 
-#### The design of classic CV API for RTEMS
+#### classic CV API
 
 #### Test case for score CV and classic CV API
 
-### RTEMS Classic API of Condition Variables
+- test whether the api is valid
+	- psxcond01 is this type test case for posix CV API
+- test whether the function is valid
+	- psx10 is this type test case for posix CV API.
+- test performance of CV
+	- psxtmcond01 - psxtmcond10 is this type test case for posix CV API.
 
-## Benefits to RTEMSThis project will add a new useful system synchronization primitives which will be a more appropriate solution than mutexes or semaphore for situations involving complex condition expressions or scheduling behaviors. And also it can provide a more appropriate solution to such a type of [bug](https://www.rtems.org/bugzilla/show_bug.cgi?id=1467).## Project Deliverables- 19 May (coding begins) 	- Collect all the reference materials and discuss with the mentor to determine the design strategy which includes how to avoid potential priority inversion. - 12 June 
-	- .- 27 June (Midterm Evaluation) 
-	- .- 15 July 
-	- .
-	- 10 August 
-	- .- 22 August 
-	- Integrate all the source code and related documents to RTEMS, if possible merge the patch to mainline.## Proposed Schedule- 21 April - 19 May (Preparation)	- Discuss with the mentor to determine the design strategy, learn more about the details of the project, get familiar with the structure of the reference source code, and understand the related reference materials and source code.- 20 May - 12 June (Design-CV)	- . - 13 June - 27 June (Code-CV)	- .- 28 June - 15 July (design+code for CV)	- .- 16 July - 10 August ()	- .
-- 11 August - 22 August (integration)	- Integrate all the codes and documents for final deliverable submission.## Continued Involvement## Future Improvements## Relevant Background Experience- Participate in the development of porting ucos kernel to arm and powerpc board and also developing some simple drivers for RTEMS like uart, led and so on.- Participate Linux kernel and driver development, the main work include: linux kernel porting, Bootloader U-BOOT porting.## Personal##### Where do you go to school?  What level are you?  What interests you about embedded systems?  Now i am currently working on my Master's in Embedded System at Sichuan University, in china. I partispated in GSOC2010 for RTEMS and the project is [RTEMS Sequenced Initialization and RTEMS System Events](http://docs.google.com/Doc?id=ddmthbb5_2g2mpc8ff), through this event i learned much more things and give me more confidence to contribute myself to open source. And in my spare time i play with some project in [my github](https://github.com/cloud-hot). Now I am very interested in the OS kernel and multi-core technology on embedded system.##### How did you learn about RTEMS?The RTEMS is my first open source project involved and from RTEMS i learned many knowledge about embedded system.## Experience
-##### Free Software Experience/Contributions:
-- [GSOC 2010 RTEMS Sequenced Initialization and RTEMS System Events](http://docs.google.com/Doc?id=ddmthbb5_2g2mpc8ff).
-- [My personal github repo](https://github.com/cloud-hot).##### Language Skill Set- Being proficient in C programming and being familiar with bash script programming and lua, ruby, python programming- Being familiar with Linux, NetBSD, FreeBSD OS and RTEMS embedded operation system- Being familiar with the ARM, MIPS and PowerPC architecture and according assembly language- Having a basic knowledge of SPARC architecture and its assembly language- Being familiar with version control system --- git.
+## Benefits to RTEMS
+
+This project will add a new useful system synchronization primitives which will be a more appropriate solution than mutexes or semaphore for situations involving complex condition expressions or scheduling behaviors. And also it can provide a more appropriate solution to such a type of [bug](https://www.rtems.org/bugzilla/show_bug.cgi?id=1467).## Project Deliverables- 19 May (coding begins) 	- Collect all the reference materials and discuss with the mentor to determine the design strategy which includes how to avoid potential priority inversion. - 12 June 
+	- Provide the definition of the data type for score CV
+	- Provide the definition of function API for score CV
+
+- 27 June (Midterm Evaluation)
+	- Provide the compilable and runable source code of score CV
+	- Provide score CV API valid test case
+
+- 15 July
+	- Provide score CV function valid test case
+	- provide the compilable and runable source code of posix CV based on score CV.
+	- Pass all posix CV test case
+
+- 10 August
+	- Provide the compilable and runable source code of classic CV based on score CV.
+	- Provide classic CV API valid test case
+	- Provide classic CV function valid test case
+
+- 22 August
+	- Integrate all the source code and related documents to RTEMS, if possible merge the patch to mainline.
+
+## Proposed Schedule
+
+- 21 April - 19 May (Preparation)
+
+	- Discuss with the mentor to determine the design strategy, learn more about the details of the project, get familiar with the structure of the reference source code, and understand the related reference materials and source code.- 20 May - 12 June (Design-CV)	- Define the data type and function API for score CV
+	- Refactor the posix CV code to score CV. It includes understand posix CV design and implement CV into score component with score related API and service.- 13 June - 27 June (Code-CV)
+	- Code score CV
+	- Design the score CV API valid test case and score CV function valid test case
+
+- 28 June - 15 July (Code-CV)
+	- Implement the posix CV based on the score CV API
+	- Make all the posix CV test case pass
+
+- 16 July - 10 August ()
+	- Implement the classic CV based on the score CV API
+	- Design the classic CV API valid test case and classic CV function valid test case
+
+- 11 August - 22 August (integration)
+	- Integrate all the codes and documents for final deliverable submission.
+
+## Continued Involvement
+
+- With RTEMS SMP development the CV should be also updated, like using atomic lock instead of Giant lock.
+
+- Integrate the CV into other RTEMS component.
+
+## Future Improvements
+
+- Improve classic CV capabilities, such as dealing with priority inversion. If time is permitted it should be part of GSOC.
+- Improve the performance and compatibility for SMP environment
+
+## Relevant Background Experience
+
+- Participate in the development of porting ucos kernel to arm and powerpc board and also developing some simple drivers for RTEMS like uart, led and so on.
+- Participate Linux kernel and driver development, the main work include: linux kernel porting, Bootloader U-BOOT porting.
+
+## Personal
+
+##### Where do you go to school?  What level are you?  What interests you about embedded systems?
+
+Now i am currently working on my Master's in Embedded System at Sichuan University, in china. I partispated in GSOC2010 for RTEMS and the project is [RTEMS Sequenced Initialization and RTEMS System Events](http://docs.google.com/Doc?id=ddmthbb5_2g2mpc8ff), through this event i learned much more things and give me more confidence to contribute myself to open source. And in my spare time i play with some project in [my github](https://github.com/cloud-hot). Now I am very interested in the OS kernel and multi-core technology on embedded system.
+
+##### How did you learn about RTEMS?
+
+The RTEMS is my first open source project involved and from RTEMS i learned many knowledge about embedded system.
+
+## Experience
+
+##### Free Software Experience/Contributions:
+
+- [GSOC 2010 RTEMS Sequenced Initialization and RTEMS System Events](http://docs.google.com/Doc?id=ddmthbb5_2g2mpc8ff).
+- [My personal github repo](https://github.com/cloud-hot).
+
+##### Language Skill Set
+
+- Being proficient in C programming and being familiar with bash script programming and lua, ruby, python programming
+- Being familiar with Linux, NetBSD, FreeBSD OS and RTEMS embedded operation system
+- Being familiar with the ARM, MIPS and PowerPC architecture and according assembly language
+- Having a basic knowledge of SPARC architecture and its assembly language
+- Being familiar with version control system --- git.
