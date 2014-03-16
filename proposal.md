@@ -54,22 +54,42 @@ Now there is the only posix CV implementation in RTEMS which is based on score t
 				CORE_condition_variable_Control *the_cv,
 				CORE_condition_variable_Attributes *the_cv_attributes);
 
-	void _CORE_condition_variable_wait(
+	void _CORE_condition_variable_Wait(
 				CORE_condition_variable_Control *the_cv,
 				CORE_mutex_Control *the_mutex);
 
-	void _CORE_condition_variable_timeoutwait(
+	void _CORE_condition_variable_Timeoutwait(
 				CORE_condition_variable_Control *the_cv,
 				CORE_mutex_Control *the_mutex,
 				Watchdog_Interval _timeout);
 
-	void _CORE_condition_variable_signal(
+	void _CORE_condition_variable_Signal(
 				CORE_condition_variable_Control *the_cv);
 
-	void _CORE_condition_variable_broadcast(
+	void _CORE_condition_variable_Broadcast(
 				CORE_condition_variable_Control *the_cv);
 
 #### classic CV API
+
+	void _Condition_variable_Manager_initialization(void);
+	rtems_status_code rtems_condition_variable_create(
+				rtems_name          name,
+				uint32_t            count,
+				rtems_attribute     attribute_set,
+				rtems_task_priority priority_ceiling,
+				rtems_id            *id);
+	rtems_status_code rtems_condition_variable_delete(
+				rtems_id       id);
+	rtems_status_code rtems_condition_variable_wait(
+				rtems_id       sem_id,
+				rtems_id       cv_id,
+				rtems_option   option_set,
+				rtems_interval timeout)；
+	rtems_status_code rtems_condition_variable_signal(
+				rtems_id       id);
+	rtems_status_code rtems_condition_variable_broadcast(
+				rtems_id       id);
+
 
 #### Test case for score CV and classic CV API
 
@@ -88,17 +108,18 @@ This project will add a new useful system synchronization primitives which will 
 
 - 27 June (Midterm Evaluation)
 	- Provide the compilable and runable source code of score CV
-	- Provide score CV API valid test case
-
-- 15 July
-	- Provide score CV function valid test case
 	- provide the compilable and runable source code of posix CV based on score CV.
 	- Pass all posix CV test case
 
-- 10 August
+- 15 July
+	- Provide score CV API valid test case
+	- Provide score CV function valid test case
 	- Provide the compilable and runable source code of classic CV based on score CV.
+
+- 10 August
 	- Provide classic CV API valid test case
 	- Provide classic CV function valid test case
+	- Improve the classic CV capabilities, such as dealing with priority inversion.
 
 - 22 August
 	- Integrate all the source code and related documents to RTEMS, if possible merge the patch to mainline.
@@ -110,15 +131,16 @@ This project will add a new useful system synchronization primitives which will 
 	- Discuss with the mentor to determine the design strategy, learn more about the details of the project, get familiar with the structure of the reference source code, and understand the related reference materials and source code.- 20 May - 12 June (Design-CV)	- Define the data type and function API for score CV
 	- Refactor the posix CV code to score CV. It includes understand posix CV design and implement CV into score component with score related API and service.- 13 June - 27 June (Code-CV)
 	- Code score CV
-	- Design the score CV API valid test case and score CV function valid test case
-
-- 28 June - 15 July (Code-CV)
 	- Implement the posix CV based on the score CV API
 	- Make all the posix CV test case pass
 
-- 16 July - 10 August ()
+- 28 June - 15 July (Code-CV)
+	- Design the score CV API valid test case and score CV function valid test case
 	- Implement the classic CV based on the score CV API
+
+- 16 July - 10 August ()
 	- Design the classic CV API valid test case and classic CV function valid test case
+	- Improve the classic CV capabilities, such as dealing with priority inversion.
 
 - 11 August - 22 August (integration)
 	- Integrate all the codes and documents for final deliverable submission.
@@ -131,7 +153,6 @@ This project will add a new useful system synchronization primitives which will 
 
 ## Future Improvements
 
-- Improve classic CV capabilities, such as dealing with priority inversion. If time is permitted it should be part of GSOC.
 - Improve the performance and compatibility for SMP environment
 
 ## Relevant Background Experience
