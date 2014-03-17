@@ -138,7 +138,7 @@ This project will add a new useful system synchronization primitives which will 
 	- Design the score CV API valid test case and score CV function valid test case
 	- Implement the classic CV based on the score CV API
 
-- 16 July - 10 August ()
+- 16 July - 10 August (Code-CV)
 	- Design the classic CV API valid test case and classic CV function valid test case
 	- Improve the classic CV capabilities, such as dealing with priority inversion.
 
@@ -175,6 +175,8 @@ The RTEMS is my first open source project involved and from RTEMS i learned many
 ##### Free Software Experience/Contributions:
 
 - [GSOC 2010 RTEMS Sequenced Initialization and RTEMS System Events](http://docs.google.com/Doc?id=ddmthbb5_2g2mpc8ff).
+	- After GSOC2010 we have choosen rtems as the platform of our project which is related to intelligent navigation car. The MCU is based on [LPC2300](http://www.zlgmcu.com/philips/NXP_ARM_2300.asp) and the board is designed by a china manufacturer zlgmcu. And in our project RTEMS is mainly responsible for task scheduling, peripheral control such as motor and sensor and bus communication such as modbus and can-bus(we also consider add wifi support for rtems, but i have few reference about this part, if anyone know please contact me). At the meantime i also participate to develope some linux driver and learn from lots of excellent projects from github.
+
 - [My personal github repo](https://github.com/cloud-hot).
 
 ##### Language Skill Set
