@@ -50,24 +50,24 @@ Now there is the only posix CV implementation in RTEMS which is based on score t
 
 #### score CV API
 
-	void _CORE_condition_variable_Initialize(
-				CORE_condition_variable_Control *the_cv,
-				CORE_condition_variable_Attributes *the_cv_attributes);
+	void _Condition_variable_Initialize(
+				Condition_variable_Control *the_cv,
+				Condition_variable_Attributes *the_cv_attributes);
 
-	void _CORE_condition_variable_Wait(
-				CORE_condition_variable_Control *the_cv,
+	void _Condition_variable_Wait(
+				Condition_variable_Control *the_cv,
 				CORE_mutex_Control *the_mutex);
 
-	void _CORE_condition_variable_Timeoutwait(
-				CORE_condition_variable_Control *the_cv,
+	void _Condition_variable_Timeoutwait(
+				Condition_variable_Control *the_cv,
 				CORE_mutex_Control *the_mutex,
 				Watchdog_Interval _timeout);
 
-	void _CORE_condition_variable_Signal(
-				CORE_condition_variable_Control *the_cv);
+	void _Condition_variable_Signal(
+				Condition_variable_Control *the_cv);
 
-	void _CORE_condition_variable_Broadcast(
-				CORE_condition_variable_Control *the_cv);
+	void _Condition_variable_Broadcast(
+				Condition_variable_Control *the_cv);
 
 #### classic CV API
 
