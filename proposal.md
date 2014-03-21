@@ -100,6 +100,16 @@ Now there is the only posix CV implementation in RTEMS which is based on score t
 - test performance of CV
 	- psxtmcond01 - psxtmcond10 is this type test case for posix CV API.
 
+#### dealing with priority inversion for CV
+
+Because when a high priority task waiting for a CV encounters a priority inversion the mutex Priority Inheritance cannot help, because the higher- priority task waiting for the condition to become true drops the mutex lock before suspending through a wait operation on the condition variable, and the lower-priority task(s) that need to progress in their computations so as to perform the notify operation on the condition variable do not hold any mutex lock while they are computing.
+
+There is a implementation of CV priority inheritance we can refer to [it](http://rtsim.sssup.it)
+
+##### References:
+1. [Priority Inheritance on Condition Variables](http://ertl.jp/~shinpei/conf/ospert13/OSPERT13_proceedings_web.pdf#page=46)
+2. [slides](http://ertl.jp/~shinpei/conf/ospert13/slides/TommasoCucinotta.pdf)
+
 ## Benefits to RTEMS
 
 This project will add a new useful system synchronization primitives which will be a more appropriate solution than mutexes or semaphore for situations involving complex condition expressions or scheduling behaviors. And also it can provide a more appropriate solution to such a type of [bug](https://www.rtems.org/bugzilla/show_bug.cgi?id=1467).## Project Deliverables- 19 May (coding begins) 	- Collect all the reference materials and discuss with the mentor to determine the design strategy which includes how to avoid potential priority inversion. - 12 June 
